@@ -13,6 +13,7 @@ public class expt_mul10 {
             }
             System.out.println("num = "+n);
         } while (true);
+        sc.close();
     }
     
 }
