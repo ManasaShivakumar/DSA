@@ -20,6 +20,7 @@ public class sln_12 {
         } while (choice == 1);
         System.out.println("Even sum = "+evensum);
         System.out.println("Odd sum = "+oddsum);
+        sc.close();
     }
     
 }
