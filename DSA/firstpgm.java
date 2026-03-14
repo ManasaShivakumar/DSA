@@ -65,8 +65,6 @@
 //         return;
 //     }
 // }
-
-// import java.util.*;
 public class firstpgm {
     // public static int calcsum(int a, int b) {
     //     int sum = a + b;
@@ -80,19 +78,77 @@ public class firstpgm {
     //     System.out.println(calcsum(a,b));
     //     sc.close();
     // }
-    public static int sum(int a, int b){
-        return a+b;
-    }
-    public static int sum(int a, int b, int c) {
-        return a+b+c;
-    }
-    public static float sum(float a, float b) {
-        return a+b;
-    }
-    public static void main(String[] args) {
-        System.out.println((sum(4,6)));
-        System.out.println((sum(4,5,9)));
-        System.out.println((sum(2.8f,2.96f)));
+    // public static int sum(int a, int b){
+    //     return a+b;
+    // }
+    // public static int sum(int a, int b, int c) {
+    //     return a+b+c;
+    // }
+    // public static float sum(float a, float b) {
+    //     return a+b;
+    // }
+    // public static void main(String[] args) {
+    //     System.out.println((sum(4,6)));
+    //     System.out.println((sum(4,5,9)));
+    //     System.out.println((sum(2.8f,2.96f)));
         
+    // }
+    // public static void passingBY(int marks[], int num) {
+    //     num = 10;
+    //     for(int i= 0; i<marks.length; i++) {
+    //         marks[i] = marks[i]+1;
+    //     }
+    //     System.out.println(num);
+    // }
+    //Linear search
+    // public static int findnum(int numbers[]) {
+    //     for(int i=0; i<numbers.length; i++) {
+    //         if(numbers[i] == 10) {
+    //             return i;
+    //         }
+    //     }
+    //     return -1;
+    // }
+    //Binary search
+    public static int findBS(int numbers[], int key) {
+        int start = 0, end = numbers.length-1;
+        while(start <= end) {
+            int mid = (start +end)/2;
+            if(numbers[mid]==key) {
+                return mid;
+            }
+            else if(numbers[mid] > key) {
+                end = mid-1;
+            }
+            else {
+                start = mid+1;
+            }
+        }
+        return -1;
+    }
+    public static void main(String args[]) {
+        // int marks[] = new int[100];
+        // Scanner sc = new Scanner(System.in);
+        // System.out.println("Enter your marks :");
+        // marks[0] = sc.nextInt();
+        // marks[1] = sc.nextInt();
+        // marks[2] = sc.nextInt();
+        // System.out.println(marks[0]+"\n"+marks[1]+"\n"+marks[2]);
+        // int num = 5;
+        // int marks[] = {97, 84, 48};
+        // passingBY(marks, num);
+        // System.out.println(num);
+        // for(int i=0; i<marks.length; i++) {
+        //     System.out.println(marks[i]);
+        // }
+        int numbers[] = {4, 5, 6, 7, 8, 10, 12};
+        int key = 10;
+        int index = findBS(numbers, key);
+        if (index == -1) {
+            System.out.println("NOT found");
+        }
+        else {
+            System.out.println("number is at index : "+index);
+        }
     }
 }
