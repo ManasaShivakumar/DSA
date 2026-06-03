@@ -36,15 +36,7 @@ This repository contains my solutions and notes while learning Data Structures a
 - Sorting Algorithms
   - Bubble Sort
   - Selection Sort
-  - Insertion Sort
-  - Merge Sort
-  - Quick Sort
-
-### Problem Solving
-- Recursion
-- Backtracking
-- Dynamic Programming
-- Greedy Algorithms
+  - Insertion Sort 
 
 ## Language Used
 - Java
