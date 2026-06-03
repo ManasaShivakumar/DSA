@@ -21,13 +21,6 @@ This repository contains my solutions and notes while learning Data Structures a
 ### Data Structures
 - Arrays
 - Strings
-- Linked Lists
-- Stacks
-- Queues
-- Hashing
-- Trees
-- Graphs
-- Heaps
 
 ### Algorithms
 - Searching Algorithms
@@ -36,7 +29,23 @@ This repository contains my solutions and notes while learning Data Structures a
 - Sorting Algorithms
   - Bubble Sort
   - Selection Sort
-  - Insertion Sort 
+  - Insertion Sort
+  - Counting Sort
+
+
+## Bit Manipulation
+- Bitwise Operators
+  - AND (&)
+  - OR (|)
+  - XOR (^)
+  - NOT (~)
+  - Left Shift (<<)
+  - Right Shift (>>)
+- Check Odd/Even
+- Set, Clear and Toggle Bits
+- Count Set Bits
+- Power of Two
+- Bit Masking
 
 ## Language Used
 - Java
