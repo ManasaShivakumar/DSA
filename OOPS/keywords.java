@@ -1,7 +1,11 @@
 public class keywords {
     public static void main(String[] args) {
-        outer.inner a = new outer.inner();
-        a.display();      
+        // outer.inner a = new outer.inner();
+        // a.display();   
+        // Student.schoolname = "krcrs";
+        // System.out.println(Student.schoolname);   
+        horse h1 = new horse();
+        System.out.println(h1.color);
     }    
 }
 class Student {

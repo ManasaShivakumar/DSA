@@ -1,12 +1,18 @@
 public class Abstraction {
     public static void main(String[] args){
-       mustang h1 = new mustang();
+       //mustang h1 = new mustang();
+       horse h2 = new horse();
+       //System.out.println(h2.color);
+       h2.change();
+       System.out.println(h2.color);
+
     }
     
 }
 abstract class Animal{
-    String color;
+    String color;    
     Animal() {
+        color = "brown";
         System.out.println("Animal constructor is called");
     }
     void eats() {
