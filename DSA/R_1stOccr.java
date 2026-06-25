@@ -1,6 +1,6 @@
 public class R_1stOccr {
     public static int firstOccurance(int arr[], int i, int key){
-        if(i==arr.length-1 && arr[i] != key) {
+        if(i==arr.length) {
             return -1;
         }
         if(arr[i] == key){
@@ -9,7 +9,7 @@ public class R_1stOccr {
         return firstOccurance(arr, i+1, key);
     }
     public static void main(String[] args) {
-        int arr[] = {25,6,23,5,1,2,5,4,5,};
+        int arr[] = {25,6,23,1,1,2,4};
         System.out.print(firstOccurance(arr, 0 , 5));
     }    
 }
