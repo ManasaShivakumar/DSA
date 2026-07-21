@@ -19,6 +19,7 @@ public class Merge_sort {
         int i=si;//iterate for left
         int j=mid+1;//iterate for right
         int k=0;
+        
         while(i<=mid && j<=ei){
             if(arr[i] < arr[j]){
                 temp[k]= arr[i];
