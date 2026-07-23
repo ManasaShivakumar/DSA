@@ -8,20 +8,25 @@ public class N_Queens {
             System.out.println();
         }
     }
-    public static void nQueens(char board[][], int row){
+    static int count = 0;
+    public static boolean nQueens(char board[][], int row){
         //base case
         if(row == board.length){
-            printboard(board);
-            return;
+            //printboard(board);
+            count++;
+            return true;
         }
         //column loop
         for(int j=0; j<board.length; j++){
             if(isSafe(board, row, j)){
                 board[row][j] = 'Q';
-                nQueens(board, row+1);//function call
+                if(nQueens(board, row+1)){
+                    return true;
+                }                   
                 board[row][j] ='x';//backtrack
             }           
         }
+        return false;
     }
     public static boolean isSafe(char board[][], int row, int col){
         //vertically up
@@ -52,6 +57,13 @@ public class N_Queens {
                 board[i][j] = 'x';
             }
         }
-        nQueens(board, 0);
+        if(nQueens(board, 0)) {
+            System.out.println("Solution is possible");
+            printboard(board);
+        }
+        else{
+            System.out.println("Solution is not possible");
+        }
+        //System.out.println("Total number ways to solve N-Queens = "+count);
     }    
 }
