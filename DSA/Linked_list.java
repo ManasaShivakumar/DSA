@@ -1,3 +1,4 @@
+import org.w3c.dom.Node;
 
 public class Linked_list {
     public static class Node{
@@ -197,17 +198,105 @@ public class Linked_list {
         size -- ;
         return val;
     }
-    public static void main(String[] args) {
-        Linked_list ll = new Linked_list();        
-        ll.addFirst(2);
-        ll.addFirst(1); 
-        ll.addLast(4);
-        ll.addLast(5); 
-        ll.add(2, 3);
-        ll.print();
-        System.out.println("removed - "+ ll.deleteNthfromEnd(2));
-        ll.print(); 
-        System.out.println(size);
+    //slow-fast approach
+    public Node findMid(Node head){
+        Node slow = head;
+        Node fast = head;
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;//slow is my midNode
+    }
+    public boolean checkPalindrome(){
+        if(head == null || head.next == null){
+            return true;
+        }
+        //find mid
+        Node midNode = findMid(head);
+
+        //reverse 2nd half
+        Node prev = null;
+        Node curr = midNode;
+        Node next;
+        while(curr != null){
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        Node right = prev;
+        Node left = head;
+        //check 1st half = 2nd half
+        while(right != null){
+            if(left.data != right.data){
+                return false;
+            }
+            left = left.next;
+            right = right.next;
+        }
+
+        return true;
+    }
+    public static boolean isCycle(){ // Floyd's CFA
+        Node slow = head;
+        Node fast = head;
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+            if(slow == fast){
+                return true;
+            }
+        }
+        return false;
+    }
+    public static void removeCycle(){
+        //detect cycle
+        Node slow = head;
+        Node fast = head;
+        boolean cycle = false;
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+            if(slow == fast){
+                cycle = true;
+                break;
+            }
+        }
+        if(cycle == false){
+            return;
+        }
+        //find meeting point
+        slow = head;
        
+        if(slow == fast){
+            while(fast.next != slow){
+                fast = fast.next;
+            }
+            fast.next = null;
+            return;
+        }
+
+        Node prev = null;
+        while(slow != fast){
+            prev = fast;
+            slow = slow.next;           
+            fast = fast.next;
+        }
+        //remove cycle
+        prev.next = null;
+    }
+    public static void main(String[] args) {
+        //Linked_list ll = new Linked_list();        
+        
+        head = new Node(1);
+        Node temp = new Node(2);
+        head.next = temp;
+        head.next.next = new Node(3);
+        head.next.next.next = new Node(4);
+        head.next.next.next.next =temp;       
+        System.out.println(isCycle());     
+        removeCycle();
+        System.out.println(isCycle());        
     }    
 }
