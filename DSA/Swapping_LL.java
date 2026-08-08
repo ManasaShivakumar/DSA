@@ -1,5 +1,5 @@
 public class Swapping_LL {
-     public static class Node{
+     public class Node{
         int data;
         Node next;
         public Node(int data){
@@ -8,11 +8,9 @@ public class Swapping_LL {
         }
     }
     public static Node head;
-    public static Node tail; 
-    public static int size;
+    public static Node tail;     
     public void addLast(int data){
-        Node newNode = new Node(data);
-        size++;
+        Node newNode = new Node(data);        
         if(head == null){
             head=tail=newNode;
             return;
@@ -77,7 +75,7 @@ public class Swapping_LL {
         }
     }
     public static void main(String[] args) {
-        Swapping_LL ll = new Swapping_LL();
+        Swapping_LL ll = new Swapping_LL();        
         ll.addLast(1);
         ll.addLast(2);
         ll.addLast(3);

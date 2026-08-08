@@ -1,5 +1,5 @@
 public class DeleteN_afterM {
-    public static class Node{
+    public class Node{
         int data;
         Node next;
         public Node(int data){
@@ -8,11 +8,9 @@ public class DeleteN_afterM {
         }
     }
     public static Node head;
-    public static Node tail;
-    public static int size;
+    public static Node tail;    
     public void addLast(int data){
-        Node newNode = new Node(data);
-        size++;
+        Node newNode = new Node(data);        
         if(head == null){
             head=tail=newNode;
             return;
@@ -45,8 +43,7 @@ public class DeleteN_afterM {
 
             t = curr.next;
             for(count = 1; count<=N && t != null; count++){
-                t = t.next;
-                size--;
+                t = t.next;                
             }
             curr.next = t;
             if(t== null){
@@ -70,6 +67,5 @@ public class DeleteN_afterM {
         ll.print();
         ll.skipM_deleteN(3,2);
         ll.print();
-    }
-    
+    }    
 }

@@ -1,4 +1,3 @@
-
 public class Linked_list {
     public static class Node{
         int data;

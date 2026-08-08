@@ -1,6 +1,5 @@
-
 public class EvenOdd_LL{
-     public static class Node{
+     public class Node{
         int data;
         Node next;
         public Node(int data){
