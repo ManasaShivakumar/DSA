@@ -125,10 +125,10 @@ public class Height_tree {
                 }
             }
             else{
-                if(!map.containsKey(curr.hd)){
+                if(!map.containsKey(curr.hd)){  //existing for the first time 
                     map.put(curr.hd, curr.node);
                 }
-
+                // map.put(curr.hd, curr.node); //for bottom view we want last occurance node
                 if(curr.node.left != null){
                     q.add(new Info2(curr.node.left, curr.hd-1));
                     min = Math.min(min, curr.hd-1);
@@ -145,6 +145,98 @@ public class Height_tree {
         }
         System.out.println();
     } 
+
+    public static void kLevel(Node root, int level, int k){
+        if(root == null){
+            return;
+        }
+        if(level == k){
+            System.out.print(root.data+" ");
+            return;
+        }
+        kLevel(root.left, level+1, k);
+        kLevel(root.right, level+1, k);
+    }
+
+    public static void klevel2(Node root, int k){
+        Queue<Node> q = new LinkedList<>();
+        q.add(root);
+        q.add(null);
+        int level = 1;
+        while(!q.isEmpty()){
+            Node curr = q.remove();
+            if(curr == null){
+                level++;
+                if(q.isEmpty()){
+                    break;
+                }
+                else{
+                    q.add(null);
+                }
+            }
+            else {
+                if(level == k){
+                    System.out.print(curr.data+" ");
+                }
+                if(curr.left != null){
+                    q.add(curr.left);
+                }
+                if(curr.right != null){
+                    q.add(curr.right);
+                }
+            }
+        }
+    }
+
+    public static boolean getpath(Node root, int n, ArrayList<Node> path){
+        if(root == null){
+            return false;
+        }
+        path.add(root);
+
+        if(root.data == n){
+            return true;
+        }
+        boolean left = getpath(root.left, n, path);
+        boolean right = getpath(root.right, n, path);
+        if(left || right){
+            return true;
+        }
+
+        path.remove(path.size()-1);
+        return false;        
+    }
+    public static Node lowestCommon(Node root, int n1, int n2){
+        ArrayList<Node> path1 = new ArrayList<>();
+        ArrayList<Node> path2 = new ArrayList<>();
+        getpath(root, n1, path1);
+        getpath(root, n2, path2);
+        int i=0;
+        for(; i<path1.size() && i<path2.size(); i++){
+            if(path1.get(i) != path2.get(i)){
+                break;
+            }
+        }
+        Node lca = path1.get(i-1);
+        return lca;
+    }
+    public static Node lca(Node root, int n1, int n2){
+        if(root == null || root.data == n1 || root.data == n2){
+            return root;
+        }
+
+        Node leftLCA = lca(root.left, n1, n2);
+        Node rightLCA = lca(root.right, n1, n2);
+        
+        if(rightLCA == null){
+            return leftLCA;
+        }
+        if(leftLCA == null){
+            return rightLCA;
+        }
+
+        return root;
+    }    
     public static void main(String[] args) {
         Node root = new Node(1);
         root.left = new Node(2);
@@ -154,8 +246,7 @@ public class Height_tree {
         root.right.left = new Node(6);
         root.right.right = new Node(7);
 
-        topView(root);
-        
+        System.out.print(lca(root, 5, 6).data);        
         
     }    
 }
