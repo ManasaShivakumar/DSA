@@ -75,6 +75,27 @@ public class Min_dist_bn_Nodes{
 
         return max+1;
     }
+    public static int sum_tree(Node root){
+        if(root == null){
+            return 0;
+        }
+        int left = sum_tree(root.left);
+        int right = sum_tree(root.right);
+        int data = root.data;
+        int newleft = root.left == null ? 0 : root.left.data;
+        int newright = root.right == null ? 0 : root.right.data;
+        root.data = newleft + left + right + newright;
+
+        return data; 
+    }
+    public static void preorder(Node root){
+        if(root == null){
+            return;
+        }
+        System.out.print(root.data+" ");
+        preorder(root.left);
+        preorder(root.right);
+    }
     public static void main(String[] args) {
         Node root = new Node(1);
         root.left = new Node(2);
@@ -84,7 +105,8 @@ public class Min_dist_bn_Nodes{
         root.right.left = new Node(6);
         root.right.right = new Node(7);
 
-        kth_ancestor(root, 2, 5);      
+        sum_tree(root);
+        preorder(root);    
         
     }  
 }
