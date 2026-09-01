@@ -1,3 +1,4 @@
+import java.util.*;
 public class BST {
     static class Node{
         int data;
@@ -50,16 +51,103 @@ public class BST {
             return search(root.right, key);
         }
     }
+
+    public static Node findIS(Node root){
+        while(root.left != null){
+            root = root.left;
+        }
+        return root;
+    }
+    public static Node delete(Node root, int val){
+        if(root == null){
+            return null;
+        }
+        if(root.data > val){
+            root.left = delete(root.left, val);
+        }
+        else if(root.data < val) {
+            root.right = delete(root.right, val);
+        }
+        else if(root.data == val){
+            //case 1
+            if(root.left == null && root.right == null){
+                return null;
+            }
+            //case 2
+            if(root.left == null){
+                return root.right;
+            }
+            else if(root.right == null){
+                return root.left;
+            }
+            //case 3
+            Node IS = findIS(root.right);
+            root.data = IS.data;
+            root.right = delete(root.right, IS.data);
+        }
+        return root;       
+    }
+
+    public static void printInrange(Node root, int k1, int k2){
+        if(root == null){
+            return;
+        }
+        if(root.data >= k1 && root.data <= k2){
+            printInrange(root.left, k1, k2);
+            System.out.print(root.data+" ");
+            printInrange(root.right, k1, k2);
+        }
+        else if(root.data < k1){
+            printInrange(root.right, k1, k2);
+        }
+        else if(root.data > k2){
+            printInrange(root.left, k1, k2);
+        }
+    }
+    static ArrayList<Integer> path = new ArrayList<>();
+    public static void printpath(Node root){
+        if(root == null){
+            return;
+        }
+        path.add(root.data);
+        if(root.left == null && root.right == null){
+            System.out.println(path);
+        }
+        printpath(root.left);
+        printpath(root.right);
+        path.remove(path.size()-1);
+    }
+    
+    public static boolean isValidBST(Node root, Node min, Node max){
+        if(root == null){
+            return true;
+        }
+        if(min != null && root.data <= min.data){
+            return false;
+        }
+        else if(max != null && root.data >= max.data){
+            return false;
+        } 
+
+        return isValidBST(root.left, min, root) && isValidBST(root.right, root, max);
+
+    }
     public static void main(String[] args) {
-        int values[] = {5,1,10,3,8,4,14,6,11};
-        Node root = build_BST(values);
-        inorder(root);
-        System.out.println();
-        if(search(root, 15)){
-            System.out.println("Found");
+        // int values[] = {8,5,10,3,6,11,14};
+        // Node root = build_BST(values);
+        Node root = new Node(6);
+        root.left = new Node(2);
+        root.right = new Node(5);
+        root.left.left = new Node(1);
+        root.left.right = new Node(4);
+        root.right.right = new Node(2);
+        if(isValidBST(root, null, null)){
+            System.out.println("Valid BST");
         }
         else{
-            System.out.println("Not Found");
+            System.out.println("Not valid BST");
         }
+        
     }    
 }
+
