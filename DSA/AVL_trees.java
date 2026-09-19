@@ -1,3 +1,4 @@
+
 public class AVL_trees {
     static class Node{
         int data, height;
@@ -84,8 +85,71 @@ public class AVL_trees {
 
         return root;
     }
+
+    public static Node findIS(Node root){
+        while(root.left != null){
+            root = root.left;
+        }
+        return root;
+    }
+
+    public static Node delete(Node root, int val){
+        if(root == null){
+            return null;
+        }
+        if(root.data > val){
+            root.left = delete(root.left, val);
+        }
+        else if(root.data < val) {
+            root.right = delete(root.right, val);
+        }
+        else if(root.data == val){
+            //case 1
+            if(root.left == null && root.right == null){
+                return null;
+            }
+            //case 2
+            if(root.left == null){
+                return root.right;
+            }
+            else if(root.right == null){
+                return root.left;
+            }
+            //case 3
+            Node IS = findIS(root.right);
+            root.data = IS.data;
+            root.right = delete(root.right, IS.data);
+        }
+
+        root.height = Math.max(height(root.left), height(root.right)) + 1;
+
+        int bf = getBalance(root);
+
+        //LL case
+        if(bf > 1 && getBalance(root.left) >= 0){
+            return rightRotate(root);
+        }
+        //RR case
+        if(bf < -1 && getBalance(root.right) <= 0){
+            return leftRotate(root);
+        }
+        //LR case
+        if(bf > 1 && getBalance(root.left) < 0){
+            root.left = leftRotate(root.left);
+            return rightRotate(root);
+        }
+        //RL case
+        if(bf < -1 && getBalance(root.right) > 0){
+            root.right = rightRotate(root.right);
+            return leftRotate(root);
+        }
+
+
+        return root;       
+    }
     public static void preorder(Node root){
         if(root == null){
+            System.out.print(-1+" ");
             return;
         }
         System.out.print(root.data+" ");
@@ -100,6 +164,12 @@ public class AVL_trees {
         root = insert(root, 50);
         root = insert(root, 25);
         //root = insert(root, 50);
+        preorder(root);
+        System.err.println();
+        root = delete(root, 40);
+        preorder(root);
+        System.err.println();
+        root = delete(root, 50);
         preorder(root);
     }    
 }

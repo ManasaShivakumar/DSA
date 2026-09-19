@@ -5,8 +5,9 @@ public class constructor {
         s1.marks[1] = 89;
         s1.marks[2] = 99;    
         Student s2 = new Student(s1);
+        Student s3 = new Student(s2);        
         System.out.println(s2.name);
-        System.out.println(s2.roll);
+        System.out.println(s3.roll);
         s1.marks[1] = 98;
         for(int i=0; i<3; i++) {
             System.out.println(s2.marks[i]);

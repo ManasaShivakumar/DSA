@@ -47,3 +47,25 @@ class video implements Takephoto, Song {
         System.out.println("Video is ready");
     }
 }
+interface cricket{
+    void batsman();
+}
+
+class players implements cricket{
+    public void batsman(){
+        System.out.println("virat");
+    }
+}
+
+
+interface  A{
+    void something();
+}
+interface B extends A {
+    void something();
+}
+class C implements A, B{
+    public void something(){
+       System.out.print("dfbhjg"); 
+    }    
+}

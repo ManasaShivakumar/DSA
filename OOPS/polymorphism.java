@@ -29,3 +29,14 @@ class calculator{
         return a + b + c;
     }
 }
+
+
+abstract class car{
+    static {
+        System.out.print("1");
+    }
+    public car(String name){
+        super();
+        System.out.print("3");
+    }
+} 

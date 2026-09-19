@@ -1,10 +1,10 @@
 public class Abstraction {
     public static void main(String[] args){
-       //mustang h1 = new mustang();
-       horse h2 = new horse();
+       mustang h1 = new mustang();
+    //    horse h2 = new horse();
        //System.out.println(h2.color);
-       h2.change();
-       System.out.println(h2.color);
+    //    h2.change();
+    //    System.out.println(h2.color);
 
     }
     
@@ -40,5 +40,15 @@ class mustang extends horse {
 class chicken extends Animal{
     void walk() {
         System.out.println("walks with 2 legs");
+    }
+}
+
+abstract class teacher{
+    abstract void teach();
+}
+
+class english extends teacher{
+    void teach(){
+        System.out.print("english");
     }
 }

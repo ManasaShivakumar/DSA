@@ -10,6 +10,6 @@ public class R_towerHanoi {
         
     }
     public static void main(String[] args) {
-        towerOfHanoi(2, "S", "H", "D");
+        towerOfHanoi(3, "S", "H", "D");
     }    
 }
