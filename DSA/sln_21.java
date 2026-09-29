@@ -19,7 +19,8 @@ public class sln_21 {
         for(int i= 0; i<nums.length; i++) {
             nums[i] = sc.nextInt();
         }
-        System.out.println(repeated_elements(nums));       
+        System.out.println(repeated_elements(nums));  
+        sc.close();     
     }
     
 }

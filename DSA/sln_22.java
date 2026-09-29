@@ -59,6 +59,7 @@ public class sln_22 {
             System.out.println("The target is at index : "+index);
         }
 
+        sc.close();
         
     }    
 }
