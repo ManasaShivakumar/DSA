@@ -1,19 +1,14 @@
-import java.util.Collections;
-import java.util.PriorityQueue;
-
+import java.util.*;
 public class MinOpr_halfarrSum {
     public static int minOpr(int arr[]){
         int sum = 0;
         for(int i=0; i<arr.length; i++){
             sum += arr[i];
         }
-
         PriorityQueue<Double> pq = new PriorityQueue<>(Collections.reverseOrder());
-
         for(int i=0; i<arr.length; i++){
             pq.add((double)arr[i]);
         }
-
         double temp = sum;
         int count = 0;
         while (temp > (sum/2)) {
