@@ -1,4 +1,4 @@
-public class Trie_DS {    
+public class Count_UniqueSubstr {
     static class Node {
         Node children[] = new Node[26];
         boolean eow = false;
@@ -37,24 +37,25 @@ public class Trie_DS {
         return curr.eow == true;
     }
 
-    public static boolean wordBreak(String key){
-        if(key.length() == 0){
-            return true;
+    public static int countOfNodes(Node root){
+        if(root == null){
+            return 0;
         }
-        for(int i=1; i<=key.length(); i++){
-            if(search(key.substring(0, i)) && wordBreak(key.substring(i))){
-                return true;
+        int count = 0;
+        for(int i=0; i<root.children.length; i++){
+            if(root.children[i] != null){
+                count += countOfNodes(root.children[i]);
             }
         }
-        return false;
+        return count+1;
     }
+
     public static void main(String[] args) {
-        String words[] = {"i", "like", "sam", "samsung", "mobile", "ice"};
-        for(int i=0; i<words.length; i++){
-            insert(words[i]);
+        String str = "apple";
+        for(int i=0; i<str.length(); i++){
+            insert(str.substring(i));
         }
-        String key = "ilikesamsung";
-        System.out.println(wordBreak(key));
-    }  
-    
+
+        System.out.println("ans = "+countOfNodes(root));
+    }
 }
