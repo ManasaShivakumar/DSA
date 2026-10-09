@@ -41,17 +41,25 @@ public class Graph_BFS_DFS {
         graph[6].add(new Edge(6,5,1));
     }
 
-    public static void bfs(ArrayList<Edge>[] graph){//O(V+E)
-        Queue<Integer> q = new LinkedList<>();
-        boolean visited[] = new boolean[graph.length];
 
-        q.add(0);//source = 0;
+    public static void bfs(ArrayList<Edge>[] graph){
+        boolean vis[] = new boolean[graph.length];
+        for(int i=0; i<graph.length; i++){
+            if(!vis[i]){
+                bfsUtil(graph, i, vis);
+            }
+        }
+    }
+    public static void bfsUtil(ArrayList<Edge>[] graph, int src, boolean vis[]){//O(V+E)
+        Queue<Integer> q = new LinkedList<>();       
+
+        q.add(src);//source = 0;
 
         while (!q.isEmpty()) {
             int curr = q.remove();
-            if(!visited[curr]){
+            if(!vis[curr]){
                 System.out.print(curr+" ");
-                visited[curr] = true;
+                vis[curr] = true;
                 for(int i=0; i<graph[curr].size(); i++){
                     Edge e = graph[curr].get(i);
                     q.add(e.dest);
@@ -60,18 +68,27 @@ public class Graph_BFS_DFS {
         }        
     }
 
-    public static void dfs(ArrayList<Edge>[] graph, int curr, boolean vis[]){        
+
+    public static void dfs(ArrayList<Edge>[] graph){
+        boolean vis[] = new boolean[graph.length];
+        for(int i=0; i<graph.length; i++){
+            if(!vis[i]) {
+                dfsUtil(graph, i, vis);
+            }           
+        }
+    }
+    public static void dfsUtil(ArrayList<Edge>[] graph, int curr, boolean vis[]){        
         System.out.print(curr+" ");
         vis[curr] = true;
         for(int i=0; i<graph[curr].size(); i++){
             Edge e = graph[curr].get(i);
             if(!vis[e.dest]){
-                dfs(graph, e.dest, vis);
+                dfsUtil(graph, e.dest, vis);
             }
         }
     }
 
-    public static boolean hasPath(ArrayList<Edge>[] graph, int src, int dest, boolean vis[]){
+    public static boolean hasPath(ArrayList<Edge>[] graph, int src, int dest, boolean vis[]){//O(V+E)
         if(src == dest){
             return true;
         }
@@ -91,11 +108,9 @@ public class Graph_BFS_DFS {
         int V = 7;
         @SuppressWarnings("unchecked")
         ArrayList<Edge> graph[] = new ArrayList[V];
-        createGraph(graph);
-        // bfs(graph);
-        // System.out.println();
-        // dfs(graph, 0, new boolean[V]);
-        System.out.println(hasPath(graph, 0, 5, new boolean[V]));
-
+        createGraph(graph);  
+        bfs(graph);
+        System.out.println();
+        dfs(graph);      
     }    
 }
