@@ -45,11 +45,42 @@ public class Topological_sorting {
         }
         s.push(curr);
     }
+
+    public static void find_indegree(ArrayList<Edge>[] graph, int[] indeg){
+        for(int i=0; i<graph.length; i++){
+            for(int j=0; j<graph[i].size(); j++){
+                Edge e = graph[i].get(j);
+                indeg[e.dest]++;
+            }
+        }
+    }
+    public static void topo_sortBfs(ArrayList<Edge>[] graph){
+        int[] indeg = new int[graph.length];
+        find_indegree(graph, indeg);
+        Queue<Integer> q = new LinkedList<>();
+        for(int i=0; i<indeg.length; i++){
+            if(indeg[i] == 0){
+                q.add(i);
+            }
+        }
+
+        while (!q.isEmpty()) {
+            int curr = q.remove();
+            System.out.print(curr+" ");
+            for(int i=0; i<graph[curr].size(); i++){
+                Edge e = graph[curr].get(i);
+                indeg[e.dest]--;
+                if(indeg[e.dest] == 0){
+                    q.add(e.dest);
+                }
+            }            
+        }
+    }
     public static void main(String[] args){
         int V = 6;
         @SuppressWarnings("unchecked")
         ArrayList<Edge>[] graph = new ArrayList[V];
         createGraph(graph);
-        topo_sort(graph);
+        topo_sortBfs(graph);
     }    
 }
