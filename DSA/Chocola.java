@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Chocola {
     public static void main(String[] args){
-        int n=4, m=6;
+        //int n=4, m=6;
         Integer vercost[] ={2, 1, 3, 1, 4};//m-1
         Integer horcost[] ={4, 1, 2};//n-1
 
